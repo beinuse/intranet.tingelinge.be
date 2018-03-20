@@ -1,0 +1,124 @@
+-- phpMyAdmin SQL Dump
+-- version 4.7.6
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Gegenereerd op: 11 jan 2018 om 10:13
+-- Serverversie: 10.1.29-MariaDB
+-- PHP-versie: 7.1.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `TL_intranet`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `staff`
+--
+
+CREATE TABLE `staff` (
+  `StaffID` int(11) NOT NULL,
+  `Firstname` varchar(25) DEFAULT NULL,
+  `Lastname` varchar(25) DEFAULT NULL,
+  `Address` varchar(50) DEFAULT NULL,
+  `Zipcode` int(5) DEFAULT NULL,
+  `City` varchar(25) DEFAULT NULL,
+  `Country` varchar(3) DEFAULT NULL,
+  `PhoneFixed` varchar(15) DEFAULT NULL,
+  `PhoneMobile` varchar(15) DEFAULT NULL,
+  `EmailHome` varchar(30) DEFAULT NULL,
+  `EmailWork` varchar(30) DEFAULT NULL,
+  `Birthday` date NOT NULL,
+  `SocialSecurityID` varchar(15) DEFAULT NULL,
+  `JobTitle` int(3) DEFAULT '999',
+  `JobGroup` int(1) DEFAULT NULL,
+  `Status` int(1) DEFAULT '0',
+  `DateInService` date DEFAULT NULL,
+  `DateOutService` date DEFAULT NULL,
+  `Remarks` varchar(2000) DEFAULT NULL,
+  `UserID` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `staff`
+--
+
+INSERT INTO `staff` (`StaffID`, `Firstname`, `Lastname`, `Address`, `Zipcode`, `City`, `Country`, `PhoneFixed`, `PhoneMobile`, `EmailHome`, `EmailWork`, `Birthday`, `SocialSecurityID`, `JobTitle`, `JobGroup`, `Status`, `DateInService`, `DateOutService`, `Remarks`, `UserID`) VALUES
+(1, 'Benny', 'Gommers', 'Korte Heide 62', 3290, 'Diest', 'BE', '', '0472/978 923', 'benny@be-in-use.be', 'benny@tingelinge.be', '1975-11-13', '', 1, NULL, 1, '2015-03-30', NULL, '', 1),
+(2, 'Inge', 'Stienaers', 'Korte Heide 62', 3290, 'Diest', 'BE', '', '0479/321 123', '', 'inge@tingelinge.be', '1981-07-08', '', 1, NULL, 1, '2017-03-30', NULL, '', 2),
+(3, 'Brenda', 'Laeveren', 'Decosterstraat 9', 3545, 'Halen', 'BE', '', '0477/505 882', 'brenda.laveren@gmail.com', 'brenda@tingelinge.be', '1988-08-13', '', 3, NULL, 1, '2015-04-20', NULL, '', 3),
+(4, 'Mieke', 'Jacobs', 'Westelsebaan 114B, bus 1', 3271, 'Averbode', 'BE', '', '0479/667 306', 'miekejacobs81@gmail.com', 'mieke@tingeinge.be', '1981-05-03', '', 2, NULL, 1, '2016-05-12', NULL, '', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `users`
+--
+
+CREATE TABLE `users` (
+  `UserID` int(3) NOT NULL,
+  `Username` varchar(15) DEFAULT NULL,
+  `Password` varchar(255) NOT NULL,
+  `UserLevel` int(1) NOT NULL DEFAULT '1',
+  `UserStatus` int(1) NOT NULL,
+  `LoginLock` int(1) NOT NULL DEFAULT '0',
+  `UserCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `users`
+--
+
+INSERT INTO `users` (`UserID`, `Username`, `Password`, `UserLevel`, `UserStatus`, `LoginLock`, `UserCreated`) VALUES
+(1, 'bgommers', 'b704f2754d237b630acca48808dbb82b', 4, 1, 0, '2018-01-02 16:16:29'),
+(2, 'istienaers', '580562427dc2982750cc0d05a6a003a5', 4, 0, 0, '2018-01-02 16:16:29'),
+(3, 'test', '098f6bcd4621d373cade4e832627b4f6', 4, 1, 0, '2018-01-07 15:01:00');
+
+--
+-- Indexen voor geëxporteerde tabellen
+--
+
+--
+-- Indexen voor tabel `staff`
+--
+ALTER TABLE `staff`
+  ADD UNIQUE KEY `StaffID` (`StaffID`);
+
+--
+-- Indexen voor tabel `users`
+--
+ALTER TABLE `users`
+  ADD UNIQUE KEY `UserID` (`UserID`);
+
+--
+-- AUTO_INCREMENT voor geëxporteerde tabellen
+--
+
+--
+-- AUTO_INCREMENT voor een tabel `staff`
+--
+ALTER TABLE `staff`
+  MODIFY `StaffID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT voor een tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `UserID` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
